@@ -1,0 +1,29 @@
+<div class="bar container">
+  <a routerLink="/" class="logo" aria-label="AppianWay — home">
+    <img src="brand/appianway-horizontal-color-on-dark.svg" alt="AppianWay" width="166" height="30" />
+  </a>
+
+  <aw-market-clock class="clock" />
+
+  <nav class="nav" [class.open]="menuOpen()" aria-label="Primary">
+    @for (item of nav; track item.path) {
+      <a [routerLink]="item.path" routerLinkActive="active" class="nav-link">
+        <span class="num">{{ item.numeral }}</span>{{ item.label }}
+      </a>
+    }
+    <a routerLink="/contact" routerLinkActive="active" class="nav-cta">Contact</a>
+  </nav>
+
+  <button
+    type="button"
+    class="burger"
+    [attr.aria-expanded]="menuOpen()"
+    aria-label="Toggle menu"
+    (click)="toggleMenu()"
+  >
+    <span></span><span></span>
+  </button>
+</div>
+<div class="road" aria-hidden="true">
+  <span [style.transform]="'scaleX(' + progress() + ')'"></span>
+</div>

@@ -1,0 +1,334 @@
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  height: clamp(720px, 100svh, 1080px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+}
+
+.field {
+  position: absolute;
+  inset: var(--header-h) 0 0 0;
+}
+
+.veil {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgb(10 11 13 / 0.94) 0%, rgb(10 11 13 / 0.6) 38%, rgb(10 11 13 / 0) 70%),
+    linear-gradient(0deg, rgb(10 11 13 / 0.9) 0%, rgb(10 11 13 / 0) 40%);
+}
+
+.hero-inner {
+  position: relative;
+  pointer-events: none;
+  display: grid;
+  gap: 28px;
+  padding-bottom: 72px;
+  a {
+    pointer-events: auto;
+  }
+}
+
+.hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  &::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: var(--aw-signal-blue);
+  }
+}
+
+.hero .lede {
+  max-width: 52ch;
+}
+
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.telemetry {
+  position: relative;
+  border-top: 1px solid var(--rule);
+  background: rgb(10 11 13 / 0.7);
+  backdrop-filter: blur(8px);
+}
+
+.telemetry-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 32px;
+  min-height: 52px;
+  padding-block: 12px;
+  font-size: 12px;
+  color: var(--ink-2);
+  em {
+    font-style: normal;
+    color: var(--ink-3);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-right: 6px;
+  }
+  .hi {
+    color: var(--aw-signal-blue);
+  }
+  .note {
+    margin-left: auto;
+    color: var(--ink-3);
+    letter-spacing: 0.06em;
+  }
+}
+
+/* ---------- I. Firm ---------- */
+.firm .container {
+  display: grid;
+  gap: 56px;
+}
+
+.statement {
+  font-size: clamp(30px, 4.4vw, 60px);
+  font-weight: 300;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  max-width: 22ch;
+  strong {
+    font-weight: 700;
+  }
+}
+
+.pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--rule-strong);
+  > div {
+    padding: 28px 32px 0 0;
+    display: grid;
+    gap: 12px;
+    align-content: start;
+    p:last-child {
+      color: var(--ink-2);
+      max-width: 36ch;
+    }
+  }
+  > div + div {
+    padding-left: 32px;
+    border-left: 1px solid var(--rule);
+  }
+}
+
+/* ---------- II. Road ---------- */
+.road-head {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px 64px;
+  align-items: end;
+  margin-bottom: clamp(56px, 7vw, 96px);
+  > div {
+    display: grid;
+    gap: 28px;
+  }
+}
+
+/* ---------- III. Signal ---------- */
+.signal .container {
+  display: grid;
+  gap: 56px;
+}
+
+.signal-head {
+  display: grid;
+  gap: 28px;
+  justify-items: start;
+}
+
+/* ---------- IV. Principles ---------- */
+.principles .container {
+  display: grid;
+  gap: 56px;
+}
+
+.principle-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--rule-strong);
+}
+
+.principle {
+  display: grid;
+  align-content: start;
+  gap: 16px;
+  padding: 32px 28px 8px 0;
+  & + & {
+    padding-left: 28px;
+    border-left: 1px solid var(--rule);
+  }
+  .numeral {
+    font-size: clamp(56px, 6vw, 88px);
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: var(--aw-signal-blue);
+    margin-bottom: 24px;
+  }
+  p {
+    color: var(--ink-2);
+  }
+}
+
+/* ---------- V. Careers ---------- */
+.careers-inner {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 56px 80px;
+  align-items: start;
+  > div {
+    display: grid;
+    gap: 28px;
+    justify-items: start;
+  }
+}
+
+.roles {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--rule-strong);
+  li {
+    border-bottom: 1px solid var(--rule);
+  }
+  a {
+    display: grid;
+    grid-template-columns: 110px 1fr auto 16px;
+    align-items: center;
+    gap: 16px;
+    padding: 24px 0;
+    transition:
+      padding 0.35s var(--ease),
+      color 0.2s;
+    &:hover {
+      padding-left: 12px;
+      .title {
+        color: var(--aw-signal-blue);
+      }
+      aw-tick {
+        color: var(--aw-signal-blue);
+        transform: translate(3px, -3px);
+      }
+    }
+  }
+  .team,
+  .loc {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  .title {
+    font-size: 20px;
+    font-weight: 300;
+    transition: color 0.2s;
+  }
+  aw-tick {
+    color: var(--ink-3);
+    transition: transform 0.35s var(--ease);
+  }
+}
+
+/* ---------- Closing ---------- */
+.closing {
+  position: relative;
+  padding-block: clamp(120px, 16vw, 220px);
+  overflow: hidden;
+  border-top: 1px solid var(--rule);
+}
+
+.closing-paving {
+  position: absolute;
+  inset: 0;
+  mask-image: radial-gradient(ellipse 70% 80% at 70% 50%, #000 0%, transparent 75%);
+}
+
+.closing-inner {
+  position: relative;
+  display: grid;
+  gap: 36px;
+  justify-items: start;
+  .display {
+    font-size: clamp(40px, 6.6vw, 100px);
+  }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1000px) {
+  .principle-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .principle:nth-child(3) {
+    padding-left: 0;
+    border-left: 0;
+  }
+  .careers-inner,
+  .road-head {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  /* Stack the simulation above the copy instead of behind it */
+  .hero {
+    height: auto;
+    min-height: 100svh;
+    padding-top: var(--header-h);
+  }
+  .field {
+    position: relative;
+    inset: auto;
+    height: 44svh;
+    min-height: 280px;
+    flex: none;
+  }
+  .veil {
+    display: none;
+  }
+  .hero-inner {
+    padding-block: 8px 48px;
+  }
+  .pillars {
+    grid-template-columns: 1fr;
+    > div,
+    > div + div {
+      padding: 24px 0;
+      border-left: 0;
+      border-bottom: 1px solid var(--rule);
+    }
+  }
+  .principle-grid {
+    grid-template-columns: 1fr;
+  }
+  .principle,
+  .principle + .principle {
+    padding: 28px 0;
+    border-left: 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .telemetry-inner .note {
+    margin-left: 0;
+  }
+  .roles a {
+    grid-template-columns: 1fr 16px;
+    .team,
+    .loc {
+      display: none;
+    }
+  }
+}

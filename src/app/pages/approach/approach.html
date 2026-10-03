@@ -1,0 +1,91 @@
+<aw-page-hero numeral="I" label="Approach" [seed]="21">
+  <ng-container title>Rigour is the <span class="accent">edge.</span></ng-container>
+  <ng-container lede>
+    We treat trading as an applied science. Ideas are hypotheses, strategies are experiments, and every result is
+    measured against the possibility that we are fooling ourselves.
+  </ng-container>
+</aw-page-hero>
+
+<!-- Research pipeline -->
+<section class="section pipeline-section">
+  <div class="container">
+    <div class="head">
+      <aw-milestone numeral="I.i" label="The research road" awReveal />
+      <h2 class="h2" awReveal="80">Most ideas die on the road.<br /><span class="dim">That is the point.</span></h2>
+    </div>
+
+    <ol class="pipeline" awReveal="120">
+      @for (stage of pipeline; track stage.n; let i = $index) {
+        <li class="stage" [style.--i]="i">
+          <div class="marker">
+            <span class="stone">{{ stage.n }}</span>
+          </div>
+          <h3>{{ stage.name }}</h3>
+          <p>{{ stage.body }}</p>
+          <div class="survive" [attr.aria-label]="stage.survive + ' of 100 ideas remain'">
+            <span class="bar"><i [style.width.%]="stage.survive"></i></span>
+            <span class="mono">{{ stage.survive }}/100</span>
+          </div>
+        </li>
+      }
+    </ol>
+    <p class="note mono">Survival shares are illustrative.</p>
+  </div>
+</section>
+
+<!-- Decomposition -->
+<section class="section section--light">
+  <div class="container stack">
+    <aw-milestone numeral="I.ii" label="What we look for" awReveal />
+    <h2 class="h2" awReveal="80">Signal, structure, noise.</h2>
+    <aw-signal-decomp />
+  </div>
+</section>
+
+<!-- Markets -->
+<section class="section">
+  <div class="container markets">
+    <div>
+      <aw-milestone numeral="I.iii" label="Where we trade" awReveal />
+      <h2 class="h2" awReveal="80">Nigeria first.<br /><span class="dim">Then the world.</span></h2>
+      <p class="lede" awReveal="160">
+        We start where we understand the structure best — Nigeria's equity, fixed-income and currency markets — and
+        widen the road to the rest of Africa and global markets as liquidity, data and traction allow.
+      </p>
+    </div>
+    <div class="table" role="table" aria-label="Markets traded" awReveal="120">
+      <div class="tr th mono" role="row">
+        <span role="columnheader">Asset class</span>
+        <span role="columnheader">Instruments</span>
+        <span role="columnheader">Horizon</span>
+      </div>
+      @for (m of markets; track m.asset) {
+        <div class="tr" role="row">
+          <span role="cell" class="asset">{{ m.asset }}</span>
+          <span role="cell">{{ m.instruments }}</span>
+          <span role="cell" class="mono">{{ m.horizon }}</span>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Risk -->
+<section class="section section--surface">
+  <div class="container risk">
+    <div>
+      <aw-milestone numeral="I.iv" label="Risk" awReveal />
+      <h2 class="h2" awReveal="80">Survive first.<br /><span class="dim">Compound second.</span></h2>
+    </div>
+    <dl>
+      @for (r of risk; track r.k; let i = $index) {
+        <div [awReveal]="i * 80">
+          <dt class="eyebrow">{{ r.k }}</dt>
+          <dd>{{ r.v }}</dd>
+        </div>
+      }
+    </dl>
+  </div>
+</section>
+
+<aw-next-milestone numeral="II" label="Technology" link="/technology" />

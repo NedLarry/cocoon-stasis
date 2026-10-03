@@ -1,0 +1,112 @@
+:host {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border: 1px solid var(--rule-strong);
+  background: none;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  cursor: pointer;
+  transition:
+    background 0.25s,
+    color 0.25s,
+    border-color 0.25s;
+  .op {
+    color: var(--ink-3);
+    &:empty {
+      display: none;
+    }
+  }
+  &.active {
+    border-color: var(--ink);
+    background: var(--ink);
+    color: var(--ground, var(--aw-onyx));
+    .op {
+      color: inherit;
+    }
+  }
+}
+
+.chart svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.hit {
+  fill: transparent;
+  cursor: pointer;
+}
+
+.axis {
+  stroke: var(--rule);
+  stroke-dasharray: 2 4;
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  fill: var(--ink-3);
+  transition: fill 0.3s;
+}
+
+.line {
+  fill: none;
+  stroke: var(--ink-3);
+  stroke-width: 1.4;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition:
+    stroke-dashoffset 2.2s var(--ease),
+    stroke 0.3s,
+    stroke-width 0.3s;
+}
+
+:host(.is-visible) .line {
+  stroke-dashoffset: 0;
+}
+
+.row.on {
+  .line {
+    stroke: var(--accent);
+    stroke-width: 2.2;
+  }
+  .label {
+    fill: var(--ink);
+  }
+}
+
+.caption {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 24px 48px;
+  padding-top: 28px;
+  border-top: 1px solid var(--rule);
+  p {
+    color: var(--ink-2);
+    max-width: 56ch;
+  }
+}
+
+@media (max-width: 760px) {
+  .caption {
+    grid-template-columns: 1fr;
+  }
+}

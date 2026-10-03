@@ -1,0 +1,90 @@
+<div class="tabs" role="tablist" aria-label="Layers of the road" aria-orientation="vertical">
+  @for (layer of layers; track layer.id; let i = $index) {
+    <button
+      type="button"
+      role="tab"
+      class="tab"
+      [id]="'layer-tab-' + i"
+      [class.active]="active() === i"
+      [attr.aria-selected]="active() === i"
+      [attr.tabindex]="active() === i ? 0 : -1"
+      aria-controls="layer-panel"
+      (click)="select(i)"
+      (keydown)="onKey($event, i)"
+    >
+      <span class="depth mono">{{ ['I', 'II', 'III', 'IV'][i] }}</span>
+      <span class="latin">{{ layer.latin }}</span>
+      <span class="name">{{ layer.name }}</span>
+    </button>
+  }
+</div>
+
+<div class="diagram">
+  <svg viewBox="0 0 1000 460" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Cross-section of a Roman road showing four construction layers">
+    <defs>
+      <!-- Cambered top: Roman roads were crowned so water ran off to the gutters -->
+      <clipPath id="road-clip">
+        <path d="M0 52 Q500 18 1000 52 L1000 460 L0 460 Z" />
+      </clipPath>
+    </defs>
+
+    <g clip-path="url(#road-clip)">
+      <!-- Statumen -->
+      <g class="layer" [class.on]="active() === 3">
+        <rect x="0" [attr.y]="layers[3].y" width="1000" [attr.height]="layers[3].h" class="bed" />
+        @for (b of boulders; track $index) {
+          <polygon [attr.points]="b.points" class="stone" />
+        }
+      </g>
+      <!-- Rudus -->
+      <g class="layer" [class.on]="active() === 2">
+        <rect x="0" [attr.y]="layers[2].y" width="1000" [attr.height]="layers[2].h" class="bed" />
+        @for (b of rubble; track $index) {
+          <polygon [attr.points]="b.points" class="stone" />
+        }
+      </g>
+      <!-- Nucleus -->
+      <g class="layer" [class.on]="active() === 1">
+        <rect x="0" [attr.y]="layers[1].y" width="1000" [attr.height]="layers[1].h" class="bed fine" />
+        @for (b of gravel; track $index) {
+          <circle [attr.cx]="b.cx" [attr.cy]="b.cy" [attr.r]="b.r * 0.6" class="grain" />
+        }
+      </g>
+      <!-- Summa crusta -->
+      <g class="layer" [class.on]="active() === 0">
+        <rect x="0" [attr.y]="0" width="1000" [attr.height]="layers[0].y + layers[0].h" class="bed joint" />
+        <g [attr.transform]="'translate(0 ' + layers[0].y + ')'">
+          @for (s of stones; track $index) {
+            <polygon [attr.points]="s" class="paver" [style.fill-opacity]="shades[$index]" />
+          }
+        </g>
+      </g>
+      <!-- Boundaries -->
+      @for (layer of layers; track layer.id) {
+        <line x1="0" [attr.y1]="layer.y + layer.h" x2="1000" [attr.y2]="layer.y + layer.h" class="seam" />
+      }
+    </g>
+
+    <!-- Depth ruler -->
+    <g class="ruler">
+      @for (layer of layers; track layer.id; let i = $index) {
+        <line x1="978" [attr.y1]="layer.y + 4" x2="978" [attr.y2]="layer.y + layer.h - 4" [class.on]="active() === i" />
+        <text x="966" [attr.y]="layer.y + layer.h / 2 + 4" text-anchor="end" [class.on]="active() === i">
+          {{ layer.latin.toUpperCase() }}
+        </text>
+      }
+    </g>
+  </svg>
+
+  <div class="panel" id="layer-panel" role="tabpanel" [attr.aria-labelledby]="'layer-tab-' + active()">
+    @let layer = layers[active()];
+    <p class="eyebrow">{{ layer.latin }} — {{ layer.gloss }}</p>
+    <h3 class="h3">{{ layer.name }}</h3>
+    <p class="body">{{ layer.body }}</p>
+    <ul class="spec">
+      @for (s of layer.spec; track $index) {
+        <li>{{ s }}</li>
+      }
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,48 @@
+<header class="head">
+  <span class="sym mono">AWX-SIM</span>
+  <span class="mid mono" [class.up]="lastSide() === 'up'" [class.down]="lastSide() === 'down'">{{ mid().toFixed(2) }}</span>
+  <span class="tag mono">Simulated</span>
+</header>
+
+<div class="grid">
+  <div class="ladder" aria-label="Simulated depth of book">
+    <div class="cols mono"><span>Bid size</span><span>Price</span><span>Ask size</span></div>
+    @for (a of asks().slice().reverse(); track $index) {
+      <div class="lvl ask mono">
+        <span></span>
+        <span class="px">{{ a.price.toFixed(2) }}</span>
+        <span class="sz"><i [style.width.%]="(a.size / maxSize()) * 100"></i>{{ a.size }}</span>
+      </div>
+    }
+    <div class="spread mono">
+      <span>Spread {{ spread().toFixed(2) }}</span>
+      <span>Imbalance {{ imbalance() >= 0 ? '+' : '' }}{{ imbalance().toFixed(2) }}</span>
+    </div>
+    @for (b of bids(); track $index) {
+      <div class="lvl bid mono">
+        <span class="sz"><i [style.width.%]="(b.size / maxSize()) * 100"></i>{{ b.size }}</span>
+        <span class="px">{{ b.price.toFixed(2) }}</span>
+        <span></span>
+      </div>
+    }
+  </div>
+
+  <div class="side">
+    <div class="trace">
+      <p class="eyebrow">Mid · last {{ history().length }} updates</p>
+      <svg viewBox="0 0 400 80" preserveAspectRatio="none" aria-hidden="true">
+        <path [attr.d]="trace()" />
+      </svg>
+    </div>
+    <div class="tape">
+      <p class="eyebrow">Tape</p>
+      @for (p of tape(); track p.id) {
+        <div class="print mono" [class.buy]="p.side === 'B'">
+          <span>{{ p.time }}</span><span>{{ p.side }}</span><span>{{ p.price.toFixed(2) }}</span><span>{{ p.size }}</span>
+        </div>
+      } @empty {
+        <p class="mono waiting">Awaiting prints…</p>
+      }
+    </div>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<div class="tabs" role="tablist" aria-label="Components of a price series">
+  @for (row of rows; track row.key; let i = $index) {
+    <button
+      type="button"
+      role="tab"
+      class="tab"
+      [class.active]="active() === i"
+      [attr.aria-selected]="active() === i"
+      (click)="active.set(i)"
+      (mouseenter)="active.set(i)"
+    >
+      <span class="op mono">{{ ['', '=', '+', '+'][i] }}</span>{{ row.label }}
+    </button>
+  }
+</div>
+
+<div class="chart">
+  <svg [attr.viewBox]="'-120 -8 ' + (W + 140) + ' ' + (height + 16)" role="img" aria-label="Time series decomposition into signal, structure and noise">
+    @for (row of rows; track row.key; let i = $index) {
+      <g class="row" [class.on]="active() === i" (click)="active.set(i)">
+        <rect x="-120" [attr.y]="i * (ROW_H + GAP) - 8" [attr.width]="W + 140" [attr.height]="ROW_H + 16" class="hit" />
+        <line x1="0" [attr.y1]="i * (ROW_H + GAP) + ROW_H / 2" [attr.x2]="W" [attr.y2]="i * (ROW_H + GAP) + ROW_H / 2" class="axis" />
+        <text x="-120" [attr.y]="i * (ROW_H + GAP) + ROW_H / 2 + 4" class="label">{{ row.label.toUpperCase() }}</text>
+        <path [attr.d]="paths[i]" pathLength="1" class="line" [style.transition-delay.ms]="i * 180" />
+      </g>
+    }
+  </svg>
+</div>
+
+<div class="caption" aria-live="polite">
+  <h3 class="h3">{{ current().title }}</h3>
+  <p>{{ current().body }}</p>
+</div>

@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="top">
+    <div class="brand">
+      <img src="brand/appianway-stacked-color-on-dark.svg" alt="AppianWay" width="140" />
+      <p class="motto">Your active edge.</p>
+    </div>
+
+    <nav class="cols" aria-label="Footer">
+      <div>
+        <p class="eyebrow">The firm</p>
+        <a routerLink="/approach">Approach</a>
+        <a routerLink="/technology">Technology</a>
+        <a routerLink="/careers">Careers</a>
+      </div>
+      <div>
+        <p class="eyebrow">Contact</p>
+        <a href="mailto:info@appianway.com">info&#64;appianway.com</a>
+        <a href="mailto:careers@appianway.com">careers&#64;appianway.com</a>
+        <a routerLink="/contact">Offices</a>
+      </div>
+      <div>
+        <p class="eyebrow">Legal</p>
+        <a routerLink="/contact" fragment="disclosures">Disclosures</a>
+        <a routerLink="/contact" fragment="privacy">Privacy</a>
+      </div>
+    </nav>
+  </div>
+
+  <p class="disclaimer">
+    AppianWay is a proprietary trading firm. We trade our own capital and do not accept outside investors, manage client
+    assets, or provide investment advice. Nothing on this website is an offer or solicitation to buy or sell any security
+    or financial instrument. Simulations shown on this site are illustrative and do not represent market data or trading
+    results.
+  </p>
+
+  <div class="bottom">
+    <span>&copy; {{ year }} AppianWay</span>
+    <span class="mono">VIA · APPIA · {{ yearRoman }}</span>
+  </div>
+</div>

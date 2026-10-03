@@ -1,0 +1,100 @@
+<aw-page-hero numeral="IV" label="Contact" [seed]="63">
+  <ng-container title>Start a <span class="accent">conversation.</span></ng-container>
+  <ng-container lede>
+    For careers, press, partnerships or general enquiries. We read everything and reply to anything that warrants it.
+  </ng-container>
+</aw-page-hero>
+
+<section class="section">
+  <div class="container contact">
+    <form [formGroup]="form" (ngSubmit)="submit()" novalidate awReveal>
+      <aw-milestone numeral="IV.i" label="Write to us" />
+
+      <fieldset class="topics">
+        <legend class="eyebrow">Topic</legend>
+        @for (t of topics; track t) {
+          <label class="topic">
+            <input type="radio" formControlName="topic" [value]="t" />
+            <span>{{ t }}</span>
+          </label>
+        }
+      </fieldset>
+
+      <div class="field" [class.invalid]="showError('name')">
+        <label for="name" class="eyebrow">Name</label>
+        <input id="name" type="text" formControlName="name" autocomplete="name" />
+        @if (showError('name')) {
+          <span class="err mono">Required</span>
+        }
+      </div>
+
+      <div class="field" [class.invalid]="showError('email')">
+        <label for="email" class="eyebrow">Email</label>
+        <input id="email" type="email" formControlName="email" autocomplete="email" />
+        @if (showError('email')) {
+          <span class="err mono">Enter a valid email address</span>
+        }
+      </div>
+
+      <div class="field" [class.invalid]="showError('message')">
+        <label for="message" class="eyebrow">Message</label>
+        <textarea id="message" rows="6" formControlName="message"></textarea>
+        @if (showError('message')) {
+          <span class="err mono">At least 10 characters</span>
+        }
+      </div>
+
+      <div class="actions">
+        <button type="submit" class="btn btn--primary">Send message <aw-tick /></button>
+        @if (sent()) {
+          <p class="sent mono" role="status">Opening your mail client…</p>
+        }
+      </div>
+    </form>
+
+    <aside class="offices">
+      <aw-milestone numeral="IV.ii" label="Offices" awReveal />
+      @for (o of offices; track o.city; let i = $index) {
+        <div class="office" [awReveal]="i * 90">
+          <h3 class="h3">{{ o.city }}</h3>
+          <p class="eyebrow">{{ o.tz }}</p>
+          <p>{{ o.role }}</p>
+        </div>
+      }
+      <div class="office" awReveal="120">
+        <p class="eyebrow">Next on the road</p>
+        <p>More offices as we grow beyond Nigeria.</p>
+      </div>
+      <div class="office" awReveal="200">
+        <p class="eyebrow">Email</p>
+        <a class="link" href="mailto:info@appianway.com">info&#64;appianway.com</a>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<section class="section section--surface legal">
+  <div class="container legal-grid">
+    <div id="disclosures">
+      <aw-milestone numeral="IV.iii" label="Disclosures" />
+      <p>
+        AppianWay is a proprietary trading firm that trades solely its own capital. We do not accept investments from,
+        manage assets for, or provide investment advice to any third party. Information on this website is provided
+        for general purposes only and does not constitute an offer, solicitation or recommendation in respect of any
+        security, financial instrument or strategy.
+      </p>
+      <p>
+        Charts and figures on this website are simulations generated in your browser. They do not depict market data,
+        the firm's positions or trading results.
+      </p>
+    </div>
+    <div id="privacy">
+      <aw-milestone numeral="IV.iv" label="Privacy" />
+      <p>
+        This website does not use tracking cookies. Information you send us by email — including job applications —
+        is used only to respond to you and is processed and retained in line with the Nigeria Data Protection Act 2023. Contact
+        info&#64;appianway.com to request access to, or deletion of, your data.
+      </p>
+    </div>
+  </div>
+</section>

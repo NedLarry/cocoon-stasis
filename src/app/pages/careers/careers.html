@@ -1,0 +1,100 @@
+<aw-page-hero numeral="III" label="Careers" [seed]="48">
+  <ng-container title>Find your <span class="accent">edge.</span></ng-container>
+  <ng-container lede>
+    We look for people who are curious, rigorous and kind — and who would rather be proven wrong than stay wrong.
+    Prior finance experience is never a requirement.
+  </ng-container>
+</aw-page-hero>
+
+<section class="section roles-section">
+  <div class="container">
+    <div class="roles-head">
+      <aw-milestone numeral="III.i" label="Open roles" awReveal />
+      <div class="filters" role="group" aria-label="Filter by team" awReveal="80">
+        @for (t of ['All'].concat(teams); track t) {
+          <button type="button" class="filter" [class.active]="team() === t" [attr.aria-pressed]="team() === t" (click)="team.set($any(t))">
+            {{ t }} <span class="mono">{{ counts()[t] }}</span>
+          </button>
+        }
+      </div>
+    </div>
+
+    <ul class="roles">
+      @for (role of roles(); track role.id) {
+        <li class="role" [id]="role.id" [class.open]="open() === role.id">
+          <button type="button" class="row" [attr.aria-expanded]="open() === role.id" [attr.aria-controls]="role.id + '-detail'" (click)="toggle(role.id)">
+            <span class="team mono">{{ role.team }}</span>
+            <span class="title">{{ role.title }}</span>
+            <span class="meta mono">{{ role.location }} · {{ role.type }}</span>
+            <span class="plus" aria-hidden="true"></span>
+          </button>
+          <div class="detail" [id]="role.id + '-detail'" role="region" [attr.aria-label]="role.title">
+            <div class="detail-inner">
+              <p class="summary">{{ role.summary }}</p>
+              <div class="lists">
+                <div>
+                  <p class="eyebrow">You will</p>
+                  <ul>
+                    @for (x of role.responsibilities; track x) {
+                      <li>{{ x }}</li>
+                    }
+                  </ul>
+                </div>
+                <div>
+                  <p class="eyebrow">You have</p>
+                  <ul>
+                    @for (x of role.requirements; track x) {
+                      <li>{{ x }}</li>
+                    }
+                  </ul>
+                </div>
+              </div>
+              <a class="btn btn--primary" [href]="mailto(role.title)">Apply for this role <aw-tick /></a>
+            </div>
+          </div>
+        </li>
+      } @empty {
+        <li class="empty">No open roles in this team right now — send us a note anyway.</li>
+      }
+    </ul>
+
+    <p class="general">
+      Don't see your role? <a class="link" href="mailto:careers@appianway.com">Write to careers&#64;appianway.com <aw-tick /></a>
+    </p>
+  </div>
+</section>
+
+<section class="section section--surface">
+  <div class="container stack">
+    <aw-milestone numeral="III.ii" label="How we hire" awReveal />
+    <h2 class="h2" awReveal="80">Four milestones. <span class="dim">No surprises.</span></h2>
+    <ol class="process">
+      @for (p of process; track p.n; let i = $index) {
+        <li [awReveal]="i * 90">
+          <span class="stone mono">{{ p.n }}</span>
+          <h3 class="h3">{{ p.name }}</h3>
+          <p>{{ p.body }}</p>
+        </li>
+      }
+    </ol>
+  </div>
+</section>
+
+<section class="section section--light">
+  <div class="container offer">
+    <div>
+      <aw-milestone numeral="III.iii" label="What we offer" awReveal />
+      <h2 class="h2" awReveal="80">Hard problems,<br />good people.</h2>
+    </div>
+    <dl>
+      @for (o of offer; track o.k; let i = $index) {
+        <div [awReveal]="i * 80">
+          <dt class="eyebrow">{{ o.k }}</dt>
+          <dd>{{ o.v }}</dd>
+        </div>
+      }
+    </dl>
+  </div>
+</section>
+
+<aw-next-milestone numeral="IV" label="Contact" link="/contact" />

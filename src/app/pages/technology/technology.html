@@ -1,0 +1,77 @@
+<aw-page-hero numeral="II" label="Technology" [seed]="34">
+  <ng-container title>Measured in <span class="accent">microseconds.</span></ng-container>
+  <ng-container lede>
+    A forecast is worth nothing until it becomes a fill. We design, build and operate every layer between a market
+    event and our response to it.
+  </ng-container>
+</aw-page-hero>
+
+<!-- Order book -->
+<section class="section">
+  <div class="container split">
+    <div class="copy">
+      <aw-milestone numeral="II.i" label="Market microstructure" awReveal />
+      <h2 class="h2" awReveal="80">Read the book.<br /><span class="dim">Then move first.</span></h2>
+      <p class="lede" awReveal="160">
+        Every venue publishes a stream of orders, cancels and trades. Our systems rebuild the full book from raw feeds,
+        derive features in real time and act before the opportunity decays.
+      </p>
+    </div>
+    <aw-order-book awReveal="120" />
+  </div>
+</section>
+
+<!-- Latency -->
+<section class="section section--surface">
+  <div class="container stack">
+    <div class="latency-head">
+      <div>
+        <aw-milestone numeral="II.ii" label="Tick-to-trade" awReveal />
+        <h2 class="h2" awReveal="80">The tail is the product.</h2>
+      </div>
+      <p class="lede" awReveal="160">
+        Averages hide risk. We engineer for the 99.9th percentile — because the slowest response arrives exactly when
+        markets move fastest.
+      </p>
+    </div>
+    <aw-latency-histogram />
+    <p class="note mono">Illustrative distribution.</p>
+  </div>
+</section>
+
+<!-- Stack -->
+<section class="section">
+  <div class="container stack">
+    <aw-milestone numeral="II.iii" label="The stack" awReveal />
+    <div class="stack-grid">
+      @for (s of stack; track s.area; let i = $index) {
+        <div class="col" [awReveal]="i * 80">
+          <h3 class="eyebrow">{{ s.area }}</h3>
+          <ul>
+            @for (item of s.items; track item) {
+              <li>{{ item }}</li>
+            }
+          </ul>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Tenets -->
+<section class="section section--light">
+  <div class="container stack">
+    <aw-milestone numeral="II.iv" label="Engineering tenets" awReveal />
+    <div class="tenets">
+      @for (t of tenets; track t.n; let i = $index) {
+        <article [awReveal]="i * 90">
+          <span class="mono n">{{ t.n }}</span>
+          <h3 class="h3">{{ t.title }}</h3>
+          <p>{{ t.body }}</p>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<aw-next-milestone numeral="III" label="Careers" link="/careers" />

@@ -1,0 +1,228 @@
+.dim {
+  color: var(--ink-3);
+}
+
+.head,
+.stack {
+  display: grid;
+  gap: 28px;
+}
+
+.stack {
+  gap: 40px;
+}
+
+/* ---------- Pipeline ---------- */
+.pipeline {
+  list-style: none;
+  margin: 72px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  position: relative;
+
+  /* The road itself */
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 23px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--rule-strong);
+  }
+  &::after {
+    background: var(--aw-signal-blue);
+    transform-origin: left;
+    transform: scaleX(0);
+    transition: transform 2.4s var(--ease) 0.3s;
+  }
+  &.is-visible::after {
+    transform: scaleX(1);
+  }
+}
+
+.stage {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  gap: 14px;
+  padding-right: 24px;
+  h3 {
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    margin-top: 16px;
+  }
+  p {
+    font-size: 15px;
+    color: var(--ink-2);
+  }
+}
+
+.marker {
+  height: 47px;
+  display: flex;
+  align-items: center;
+}
+
+/* A Roman milestone: a short column with a rounded cap */
+.stone {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 47px;
+  border: 1px solid var(--rule-strong);
+  border-radius: 20px 20px 2px 2px;
+  background: var(--aw-onyx);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ink-2);
+  transition:
+    border-color 0.4s,
+    color 0.4s;
+  transition-delay: calc(0.3s + var(--i) * 0.38s);
+}
+
+.pipeline.is-visible .stone {
+  border-color: var(--aw-signal-blue);
+  color: var(--aw-signal-blue);
+}
+
+.survive {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  color: var(--ink-3);
+  .bar {
+    flex: 1;
+    height: 3px;
+    background: var(--rule);
+  }
+  i {
+    display: block;
+    height: 100%;
+    background: var(--ink-2);
+  }
+}
+
+.stage:last-child .survive i {
+  background: var(--aw-signal-blue);
+}
+
+.note {
+  margin-top: 32px;
+  font-size: 11px;
+  color: var(--ink-3);
+  letter-spacing: 0.06em;
+}
+
+/* ---------- Markets ---------- */
+.markets {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 56px 80px;
+  > div:first-child {
+    display: grid;
+    gap: 28px;
+    align-content: start;
+  }
+}
+
+.table {
+  border-top: 1px solid var(--rule-strong);
+}
+
+.tr {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr 1fr;
+  gap: 16px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--rule);
+  color: var(--ink-2);
+  font-size: 15px;
+  .mono {
+    font-size: 12px;
+  }
+}
+
+.th {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.asset {
+  color: var(--ink);
+  font-size: 18px;
+  font-weight: 300;
+}
+
+/* ---------- Risk ---------- */
+.risk {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 56px 80px;
+  > div {
+    display: grid;
+    gap: 28px;
+    align-content: start;
+  }
+  dl {
+    margin: 0;
+    border-top: 1px solid var(--rule-strong);
+    div {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 24px;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    dt {
+      padding-top: 4px;
+      color: var(--aw-signal-blue);
+    }
+    dd {
+      margin: 0;
+      color: var(--ink-2);
+    }
+  }
+}
+
+@media (max-width: 1100px) {
+  .pipeline {
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 56px;
+    &::before,
+    &::after {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .markets,
+  .risk {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .pipeline {
+    grid-template-columns: 1fr;
+  }
+  .tr {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+  .th {
+    display: none;
+  }
+  .risk dl div {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+}

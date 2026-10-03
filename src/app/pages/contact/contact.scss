@@ -1,0 +1,148 @@
+.contact {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 64px 96px;
+  align-items: start;
+}
+
+form {
+  display: grid;
+  gap: 32px;
+}
+
+.topics {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  legend {
+    margin-bottom: 14px;
+    padding: 0;
+  }
+}
+
+.topic {
+  position: relative;
+  cursor: pointer;
+  input {
+    position: absolute;
+    opacity: 0;
+    inset: 0;
+    cursor: pointer;
+  }
+  span {
+    display: inline-block;
+    padding: 10px 16px;
+    border: 1px solid var(--rule-strong);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+    transition: all 0.2s;
+  }
+  input:checked + span {
+    background: var(--aw-signal-blue);
+    border-color: var(--aw-signal-blue);
+    color: var(--aw-onyx);
+  }
+  input:focus-visible + span {
+    outline: 2px solid var(--aw-signal-blue);
+    outline-offset: 3px;
+  }
+}
+
+.field {
+  display: grid;
+  gap: 10px;
+  position: relative;
+  input,
+  textarea {
+    width: 100%;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid var(--rule-strong);
+    padding: 10px 0 14px;
+    font: inherit;
+    font-size: 20px;
+    font-weight: 300;
+    color: var(--ink);
+    resize: vertical;
+    transition: border-color 0.25s;
+    &:focus {
+      outline: none;
+      border-bottom-color: var(--aw-signal-blue);
+    }
+  }
+  &.invalid {
+    input,
+    textarea {
+      border-bottom-color: #ff9b8e;
+    }
+  }
+}
+
+.err {
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: #ff9b8e;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.sent {
+  font-size: 12px;
+  color: var(--aw-signal-blue);
+}
+
+.offices {
+  display: grid;
+  gap: 0;
+  aw-milestone {
+    margin-bottom: 32px;
+  }
+}
+
+.office {
+  display: grid;
+  gap: 8px;
+  padding: 28px 0;
+  border-top: 1px solid var(--rule);
+  p:last-child {
+    color: var(--ink-2);
+  }
+  .link {
+    width: fit-content;
+  }
+}
+
+.legal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px 80px;
+  > div {
+    display: grid;
+    gap: 20px;
+    align-content: start;
+    scroll-margin-top: calc(var(--header-h) + 32px);
+  }
+  p {
+    font-size: 15px;
+    color: var(--ink-2);
+    max-width: 64ch;
+  }
+}
+
+@media (max-width: 900px) {
+  .contact,
+  .legal-grid {
+    grid-template-columns: 1fr;
+  }
+}

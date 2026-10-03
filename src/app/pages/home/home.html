@@ -1,0 +1,145 @@
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <aw-path-field class="field" (stats)="stats.set($event)" />
+  <div class="veil" aria-hidden="true"></div>
+
+  <div class="container hero-inner">
+    <p class="eyebrow hero-eyebrow" awReveal>Quantitative trading firm</p>
+    <h1 class="display" awReveal="80">
+      Ten thousand paths.<br />
+      <span class="accent">One edge.</span>
+    </h1>
+    <p class="lede" awReveal="180">
+      AppianWay builds systematic trading strategies from first principles — rigorous research, fast infrastructure
+      and disciplined risk. Built in Lagos, compounding a small advantage from Nigeria's markets outward.
+    </p>
+    <div class="ctas" awReveal="260">
+      <a routerLink="/approach" class="btn btn--primary">Our approach <aw-tick /></a>
+      <a routerLink="/careers" class="btn">Open roles <aw-tick /></a>
+    </div>
+  </div>
+
+  <div class="telemetry" aria-label="Simulation readout">
+    <div class="container telemetry-inner mono">
+      @if (stats(); as s) {
+        <span><em>Run</em> {{ s.run.toString().padStart(4, '0') }}</span>
+        <span><em>Paths</em> {{ s.paths | number }}</span>
+        <span><em>Step</em> {{ s.step.toString().padStart(3, '0') }}/{{ s.steps }}</span>
+        <span class="hi"><em>Edge z</em> {{ s.edgeZ >= 0 ? '+' : '' }}{{ s.edgeZ | number: '1.2-2' }}σ</span>
+        <span class="hi"><em>Percentile</em> {{ s.percentile | number: '1.1-1' }}</span>
+      }
+      <span class="note">Simulated random walks · not market data · hover to probe</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ I. THE FIRM ============ -->
+<section class="section section--light firm">
+  <div class="container">
+    <aw-milestone numeral="I" label="The firm" awReveal />
+    <p class="statement" awReveal="80">
+      Markets are noisy. Noise can be measured. What remains after rigorous measurement is an
+      <strong>edge</strong> — small, persistent, and worth compounding.
+    </p>
+    <div class="pillars">
+      <div awReveal="0">
+        <p class="eyebrow">Systematic</p>
+        <p>Every decision is a model, and every model is tested, monitored and retired with discipline.</p>
+      </div>
+      <div awReveal="100">
+        <p class="eyebrow">Independent</p>
+        <p>We trade only our own capital — which lets us choose our horizon, our markets and our pace.</p>
+      </div>
+      <div awReveal="200">
+        <p class="eyebrow">Collaborative</p>
+        <p>Researchers, engineers and traders work as one team, on one codebase, toward one book.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ II. BUILT LIKE THE ROAD ============ -->
+<section class="section section--surface road">
+  <div class="container">
+    <div class="road-head">
+      <div>
+        <aw-milestone numeral="II" label="How we build" awReveal />
+        <h2 class="h2" awReveal="80">Built like the road.</h2>
+      </div>
+      <p class="lede" awReveal="160">
+        In 312 BC, Appius Claudius Caecus began a road south from Rome. It was laid in layers — each one load-bearing,
+        most of them invisible from the surface. Stretches of it still carry traffic today. We build trading systems
+        the same way.
+      </p>
+    </div>
+    <aw-road-section awReveal="120" />
+  </div>
+</section>
+
+<!-- ============ III. SIGNAL ============ -->
+<section class="section section--light signal">
+  <div class="container">
+    <div class="signal-head">
+      <aw-milestone numeral="III" label="Research" awReveal />
+      <h2 class="h2" awReveal="80">Separate the signal<br />from the road.</h2>
+      <a routerLink="/approach" class="link" awReveal="160">How research works <aw-tick /></a>
+    </div>
+    <aw-signal-decomp />
+  </div>
+</section>
+
+<!-- ============ IV. PRINCIPLES ============ -->
+<section class="section principles">
+  <div class="container">
+    <aw-milestone numeral="IV" label="Principles" awReveal />
+    <div class="principle-grid">
+      @for (p of principles; track p.n; let i = $index) {
+        <article class="principle" [awReveal]="i * 90">
+          <span class="numeral">{{ p.n }}</span>
+          <h3 class="h3">{{ p.title }}</h3>
+          <p>{{ p.body }}</p>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ============ V. CAREERS ============ -->
+<section class="section section--surface careers">
+  <div class="container careers-inner">
+    <div>
+      <aw-milestone numeral="V" label="Careers" awReveal />
+      <h2 class="h2" awReveal="80">Build what<br />moves markets.</h2>
+      <p class="lede" awReveal="160">
+        We hire exceptional problem solvers — mathematicians, physicists, computer scientists and engineers. No finance
+        background required.
+      </p>
+      <a routerLink="/careers" class="btn btn--primary" awReveal="220">All open roles <aw-tick /></a>
+    </div>
+    <ul class="roles" awReveal="120">
+      @for (role of roles; track role.id) {
+        <li>
+          <a [routerLink]="['/careers']" [fragment]="role.id">
+            <span class="team mono">{{ role.team }}</span>
+            <span class="title">{{ role.title }}</span>
+            <span class="loc mono">{{ role.location }}</span>
+            <aw-tick />
+          </a>
+        </li>
+      }
+    </ul>
+  </div>
+</section>
+
+<!-- ============ CLOSING ============ -->
+<section class="closing">
+  <aw-paving-band class="closing-paving" [height]="520" [cell]="64" [seed]="12" />
+  <div class="container closing-inner">
+    <p class="eyebrow" awReveal>Via Appia · Regina viarum</p>
+    <h2 class="display" awReveal="80">
+      All roads lead somewhere.<br />
+      <span class="accent">Choose the one with the edge.</span>
+    </h2>
+    <a routerLink="/contact" class="btn btn--primary" awReveal="160">Get in touch <aw-tick /></a>
+  </div>
+</section>
